@@ -52,8 +52,8 @@ jobs:
   GITHUB_HEAD_REF:
     runs-on: ubuntu-latest
     environment:
-      name: review/${{ GITHUB_HEAD_REF }}
-      url: http://${{ GITHUB_HEAD_REF }}.dev.demo.com
+      name: review/${{ env.GITHUB_HEAD_REF }}
+      url: http://${{ env.GITHUB_HEAD_REF }}.dev.demo.com
 
     steps:
       - uses: actions/checkout@v3
@@ -64,8 +64,8 @@ jobs:
   GITHUB_REF_NAME:
     runs-on: ubuntu-latest
     environment:
-      name: review/${{ GITHUB_REF_NAME }}
-      url: http://${{ GITHUB_REF_NAME }}.dev.demo.com
+      name: review/${{ env.GITHUB_REF_NAME }}
+      url: http://${{ env.GITHUB_REF_NAME }}.dev.demo.com
 
     steps:
       - uses: actions/checkout@v3
