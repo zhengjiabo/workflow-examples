@@ -21,8 +21,8 @@ jobs:
     environment:
       # 获取 CICD 中的变量: Context
       # https://docs.github.com/en/actions/learn-github-actions/expressions
-      name: preview/${{ github.ref_name }}
-      url: https://${{ github.ref_name }}.dev.demo.com
+      name: preview/${{ github.head_ref }}
+      url: https://${{ github.head_ref }}.dev.demo.com
     steps:
       # 切出代码，使用该 Action 将可以拉取最新代码
       - uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
           cat preview.docker-compose.yaml | envsubst > docker-compose.yaml
         # docker-compose up --build -d cra-preview-${COMMIT_REF_NAME}
         env:
-          COMMIT_REF_NAME: ${{ github.ref_name }}
+          COMMIT_REF_NAME: ${{ github.head_ref }}
           
       - name: Dump GitHub context
         run: echo '${{ toJSON(github) }}'
