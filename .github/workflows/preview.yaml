@@ -32,3 +32,6 @@ jobs:
         # docker-compose up --build -d cra-preview-${COMMIT_REF_NAME}
         env:
           COMMIT_REF_NAME: ${{ github.ref_name }}
+          
+      - name: Dump GitHub context
+        run: echo '${{ toJSON(github) }}'
