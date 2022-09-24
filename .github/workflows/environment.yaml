@@ -21,57 +21,57 @@ jobs:
       - name: Dump GitHub context
         run: echo '${{ toJSON(github) }}'
         
-  COMMIT_REF_NAME:
-    runs-on: ubuntu-latest
-    environment:
-      name: review/${{ env.COMMIT_REF_NAME }}
-      url: http://${{ env.COMMIT_REF_NAME }}.dev.demo.com
+#   COMMIT_REF_NAME:
+#     runs-on: ubuntu-latest
+#     environment:
+#       name: review/${{ env.COMMIT_REF_NAME }}
+#       url: http://${{ env.COMMIT_REF_NAME }}.dev.demo.com
 
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Dump GitHub context
-        run: echo '${{ toJSON(github) }}'
+#       - name: Dump GitHub context
+#         run: echo '${{ toJSON(github) }}'
         
         
-  COMMIT_REF_NAME_AND_ENV:
-    runs-on: ubuntu-latest
-    environment:
-      name: review/${{ env.COMMIT_REF_NAME }}
-      url: http://${{ env.COMMIT_REF_NAME }}.dev.demo.com
-    env: 
-      COMMIT_REF_NAME: test
+#   COMMIT_REF_NAME_AND_ENV:
+#     runs-on: ubuntu-latest
+#     environment:
+#       name: review/${{ env.COMMIT_REF_NAME }}
+#       url: http://${{ env.COMMIT_REF_NAME }}.dev.demo.com
+#     env: 
+#       COMMIT_REF_NAME: test
       
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Dump GitHub context
-        run: echo '${{ toJSON(github) }}'
+#       - name: Dump GitHub context
+#         run: echo '${{ toJSON(github) }}'
         
         
-  GITHUB_HEAD_REF:
-    runs-on: ubuntu-latest
-    environment:
-      name: review/${{ env.GITHUB_HEAD_REF }}
-      url: http://${{ env.GITHUB_HEAD_REF }}.dev.demo.com
+#   GITHUB_HEAD_REF:
+#     runs-on: ubuntu-latest
+#     environment:
+#       name: review/${{ env.GITHUB_HEAD_REF }}
+#       url: http://${{ env.GITHUB_HEAD_REF }}.dev.demo.com
 
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Dump GitHub context
-        run: echo '${{ toJSON(github) }}'
+#       - name: Dump GitHub context
+#         run: echo '${{ toJSON(github) }}'
         
-  GITHUB_REF_NAME:
-    runs-on: ubuntu-latest
-    environment:
-      name: review/${{ env.GITHUB_REF_NAME }}
-      url: http://${{ env.GITHUB_REF_NAME }}.dev.demo.com
+#   GITHUB_REF_NAME:
+#     runs-on: ubuntu-latest
+#     environment:
+#       name: review/${{ env.GITHUB_REF_NAME }}
+#       url: http://${{ env.GITHUB_REF_NAME }}.dev.demo.com
 
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Dump GitHub context
-        run: echo '${{ toJSON(github) }}'
+#       - name: Dump GitHub context
+#         run: echo '${{ toJSON(github) }}'
         
         
     
