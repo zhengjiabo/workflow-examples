@@ -9,6 +9,18 @@ on:
   workflow_dispatch:
 
 jobs:
+  environment:
+    runs-on: ubuntu-latest
+    environment:
+      name: environment
+      url: http://environment.dev.demo.com
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Dump GitHub context
+        run: echo '${{ toJSON(github) }}'
+        
   COMMIT_REF_NAME:
     runs-on: ubuntu-latest
     environment:
