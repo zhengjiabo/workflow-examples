@@ -27,7 +27,8 @@ jobs:
 
       # 如何在 Github Actions 中设置环境变量
       # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-environment-variable
-
+      - run: echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+      
       - run: echo $KEY
         env:
           KEY: demo
