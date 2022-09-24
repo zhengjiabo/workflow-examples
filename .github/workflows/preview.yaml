@@ -2,12 +2,7 @@ name: Preview
 
 # 执行 CI 的时机: 当 git push 到 feature-* 分支时
 on:
-  pull_request_target:
-    types:
-      # 当新建了一个 PR 时
-      - opened
-      # 当提交 PR 的分支，未合并前并拥有新的 Commit 时
-      - synchronize
+  push:
     branches:    
       - feature-* # 只监听功能分支
   workflow_dispatch:
@@ -22,7 +17,7 @@ jobs:
       # 获取 CICD 中的变量: Context
       # https://docs.github.com/en/actions/learn-github-actions/expressions
       name: preview/${{ github.ref_name }}
-      url: https://${{ github.ref_name    }}.cra.shanyue.tech
+      url: https://${{ github.ref_name }}.cra.shanyue.tech
     steps:
       # 切出代码，使用该 Action 将可以拉取最新代码
       - uses: actions/checkout@v2
