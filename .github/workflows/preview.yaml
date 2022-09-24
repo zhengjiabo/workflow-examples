@@ -9,7 +9,7 @@ on:
       # 当提交 PR 的分支，未合并前并拥有新的 Commit 时
       - synchronize
     branches:    
-      - feature-** # 只监听功能分支
+      - main # 只监听功能分支
   workflow_dispatch:
 
 # 执行所有的 jobs
@@ -32,3 +32,6 @@ jobs:
         # docker-compose up --build -d cra-preview-${COMMIT_REF_NAME}
         env:
           COMMIT_REF_NAME: ${{ github.ref_name }}
+          
+      - name: Dump GitHub context
+        run: echo '${{ toJSON(github) }}'
