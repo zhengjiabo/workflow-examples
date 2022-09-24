@@ -2,14 +2,14 @@ name: Preview
 
 # 执行 CI 的时机: 当 git push 到 feature-* 分支时
 on:
-  pull_request:
+  pull_request_target:
     types:
       # 当新建了一个 PR 时
       - opened
       # 当提交 PR 的分支，未合并前并拥有新的 Commit 时
       - synchronize
     branches:    
-      - main # 只监听功能分支
+      - feature-** # 只监听功能分支
   workflow_dispatch:
 
 # 执行所有的 jobs
