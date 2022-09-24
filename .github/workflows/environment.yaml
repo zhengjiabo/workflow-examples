@@ -21,17 +21,17 @@ jobs:
       - name: Dump GitHub context
         run: echo '${{ toJSON(github) }}'
         
-  COMMIT_REF_NAME:
-    runs-on: ubuntu-latest
-    environment:
-      name: review/${{ COMMIT_REF_NAME }}
-      url: http://${{ COMMIT_REF_NAME }}.dev.demo.com
+#   COMMIT_REF_NAME:
+#     runs-on: ubuntu-latest
+#     environment:
+#       name: review/${{ COMMIT_REF_NAME }}
+#       url: http://${{ COMMIT_REF_NAME }}.dev.demo.com
 
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Dump GitHub context
-        run: echo '${{ toJSON(github) }}'
+#       - name: Dump GitHub context
+#         run: echo '${{ toJSON(github) }}'
         
         
   COMMIT_REF_NAME_AND_ENV:
