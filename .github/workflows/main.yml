@@ -38,6 +38,21 @@ jobs:
       - run: echo "KEY1=$(echo key1)" >> $GITHUB_ENV
           
       - run: echo $KEY1
+      
+      - run: echo $CI
+      
+      - run: echo $GITHUB_REPOSITORY
+      
+      - run: echo $GITHUB_EVENT_NAME
+      
+      - run: echo $GITHUB_SHA
+      
+      - run: echo $GITHUB_REF_NAME
+      
+      - run: echo $GITHUB_HEAD_REF
+      
+      - name: Dump GitHub context
+        run: echo '${{ toJSON(github) }}'
 
 
 
