@@ -12,7 +12,8 @@ on:
 jobs:
   preview:
     # 该 Job 在自建的 Runner 中执行
-    runs-on: self-hosted
+    # runs-on: self-hosted
+    runs-on: ubuntu-latest
     environment:
       # 获取 CICD 中的变量: Context
       # https://docs.github.com/en/actions/learn-github-actions/expressions
