@@ -9,17 +9,59 @@ on:
   workflow_dispatch:
 
 jobs:
-  environment:
+  COMMIT_REF_NAME:
     runs-on: ubuntu-latest
     environment:
-      name: production_environment
-      url: https://github.com
+      name: review/$COMMIT_REF_NAME
+      url: http://$COMMIT_REF_NAME.dev.demo.com
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Dump GitHub context
         run: echo '${{ toJSON(github) }}'
+        
+        
+  COMMIT_REF_NAME_AND_ENV:
+    runs-on: ubuntu-latest
+    environment:
+      name: review/$COMMIT_REF_NAME
+      url: http://$COMMIT_REF_NAME.dev.demo.com
+    env: 
+      COMMIT_REF_NAME: test
+      
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Dump GitHub context
+        run: echo '${{ toJSON(github) }}'
+        
+        
+  GITHUB_HEAD_REF:
+    runs-on: ubuntu-latest
+    environment:
+      name: review/$GITHUB_HEAD_REF
+      url: http://$GITHUB_HEAD_REF.dev.demo.com
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Dump GitHub context
+        run: echo '${{ toJSON(github) }}'
+        
+  GITHUB_REF_NAME:
+    runs-on: ubuntu-latest
+    environment:
+      name: review/$GITHUB_REF_NAME
+      url: http://$GITHUB_REF_NAME.dev.demo.com
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Dump GitHub context
+        run: echo '${{ toJSON(github) }}'
+        
+        
     
         
 
