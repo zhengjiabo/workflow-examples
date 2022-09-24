@@ -4,7 +4,7 @@ name: Preview
 on:
   push:
     branches:    
-      - feature-* # 只监听功能分支
+      - feature-** # 只监听功能分支
   workflow_dispatch:
 
 # 执行所有的 jobs
