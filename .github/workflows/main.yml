@@ -32,18 +32,20 @@ jobs:
         env:
           KEY: demo
 
-      - name: Check GITHUB_ENV 2
-        run: |
+      #- name: Check GITHUB_ENV 2
+      - run: |
           echo $GITHUB_ENV
-          #cat $GITHUB_ENV
           
-      - name: Check GITHUB_ENV 3
-        run: |
+          
+      - run: |
+          cat $GITHUB_ENV
+          
+      #- name: Check GITHUB_ENV 3
+      - run: |
           echo "KEY1=$(echo key1)" >> $GITHUB_ENV
-          echo $KEY1
-          
-      - name: Check GITHUB_ENV 4
-        run: |
+        
+      # - name: Check GITHUB_ENV 4
+      - run: 
           echo $KEY1
 
 
