@@ -36,8 +36,6 @@ jobs:
         run: |
           echo $GITHUB_ENV
           cat $GITHUB_ENV
-          echo "KEY1=$(echo key1)" >> $GITHUB_ENV
-          echo $KEY1
           
       - name: Check GITHUB_ENV 3
         run: |
