@@ -6,10 +6,9 @@ services:
       context: .
     labels:
       - traefik.http.routers.dev-preview-${COMMIT_REF_NAME}.rule=Host(`${COMMIT_REF_NAME}.dev.demo.com`)
-      - traefik.http.routers.dev-preview-${COMMIT_REF_NAME}.tls=true
-      - traefik.http.routers.dev-preview-${COMMIT_REF_NAME}.tls.certresolver=le
+      # - traefik.http.routers.dev-preview-${COMMIT_REF_NAME}.tls=true
+      # - traefik.http.routers.dev-preview-${COMMIT_REF_NAME}.tls.certresolver=le
 
 networks:
-  default:
-    external:
-      name: traefik_default
+  external:
+    name: traefik_default
