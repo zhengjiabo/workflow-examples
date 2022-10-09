@@ -33,3 +33,4 @@ coverage
 cypress
 cypress.config.ts
 README.md
+**docker-compose.yaml
