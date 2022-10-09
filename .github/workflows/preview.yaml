@@ -1,6 +1,6 @@
 name: Preview
 
-# 执行 CI 的时机: 当 git push 到 feature-* 分支时
+# 执行 CI 的时机: 当提交 PR 到 main 分支时
 on:
   pull_request:
     types:
@@ -9,15 +9,14 @@ on:
       # 当提交 PR 的分支，未合并前并拥有新的 Commit 时
       - synchronize
     branches:    
-      - main # 只监听功能分支
+      - main # 只监听主分支
   workflow_dispatch:
 
 # 执行所有的 jobs
 jobs:
   preview:
     # 该 Job 在自建的 Runner 中执行
-    # runs-on: self-hosted
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment:
       # 获取 CICD 中的变量: Context
       # https://docs.github.com/en/actions/learn-github-actions/expressions
@@ -29,7 +28,7 @@ jobs:
       - name: Preview
         run: |
           cat preview.docker-compose.yaml | envsubst > docker-compose.yaml
-        # docker-compose up --build -d cra-preview-${COMMIT_REF_NAME}
+          docker-compose up --build -d cra-preview-${COMMIT_REF_NAME}
         env:
           COMMIT_REF_NAME: ${{ github.head_ref }}
           

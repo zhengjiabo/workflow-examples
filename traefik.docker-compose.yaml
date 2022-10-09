@@ -1,18 +1,5 @@
 version: "3"
 services:
-  frontend:
-    image: examples_frontend 
-    container_name: examples_frontend_container
-    # ports:
-    #   - 8000:80
-    build:
-      context: .
-    labels:
-      # 为 demo 配置我们的自定义域名
-      - traefik.http.routers.dev.rule=Host(`dev.demo.com`)
-      - traefik.http.routers.dev.tls=true
-      - traefik.http.routers.dev.tls.certresolver=le
-
   traefik:
     image: traefik:v2.5
     ports:
