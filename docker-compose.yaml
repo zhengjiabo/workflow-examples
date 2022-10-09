@@ -1,0 +1,35 @@
+version: "3"
+services:
+  frontend:
+    image: examples_frontend 
+    container_name: examples_frontend_container
+    # ports:
+    #   - 8000:80
+    build:
+      context: .
+    labels:
+      # 为 demo 配置我们的自定义域名
+      - traefik.http.routers.dev.rule=Host(`dev.demo.com`)
+      - traefik.http.routers.dev.tls=true
+      - traefik.http.routers.dev.tls.certresolver=le
+
+  traefik:
+    image: traefik:v2.5
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - ./traefik.toml:/etc/traefik/traefik.toml # traefik 配置
+      - ./acme.json:/acme.json # 维护证书信息--证书解析配置
+      - ./log:/log # 日志文件夹挂载，这样可以在宿主机中直接查看日志
+      - /var/run/docker.sock:/var/run/docker.sock # 使得 traefik 可以监听 docker 事件
+    container_name: traefik
+    # env_file: .env # 环境变量以文件形式进行存储配置 https://docs.docker.com/compose/env-file/
+    labels:
+      - "traefik.http.routers.api.rule=Host(`traefik.demo.com`)" # 也可以自身设置label 用于 traefik 发现并监控
+      - "traefik.http.routers.api.service=api@internal" # 指定 api@internal 服务，开启 api 控制。
+      
+networks:
+  default:
+    name: traefik_default
