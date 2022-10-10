@@ -21,9 +21,7 @@ jobs:
       # 获取 CICD 中的变量: Context
       # https://docs.github.com/en/actions/learn-github-actions/expressions
       name: preview/${{ github.head_ref }}
-      url: https://${SERVICE_ADDRESS}/${{ github.head_ref }} 
-    env:
-      SERVICE_ADDRESS: ${{ secrets.SERVICE_ADDRESS }}
+      url: https://119.3.41.35/${{ github.head_ref }}
     steps:
       # 切出代码，使用该 Action 将可以拉取最新代码
       - uses: actions/checkout@v2
