@@ -1,14 +1,23 @@
+# 模板 用来生成每个分支的 docker-compose.yaml
 version: "3"
+
+networks:
+  traefik-proxy-network:
+    external: true # 使用已存在、组合（compose 文件）之外的 network，如果不存在则提示 network proxy-net declared as external, but could not be found
+    name: proxy-net # 指定名称
+
 services:
   dev-preview-${COMMIT_REF_NAME}:
     container_name: dev-preview-${COMMIT_REF_NAME}
     build:
       context: .
+      args:
+        - COMMIT_REF_NAME
+    networks: # 指定 network 使这个容器成为该网络的一部分
+      - traefik-proxy-network
     labels:
-      - traefik.http.routers.dev-preview-${COMMIT_REF_NAME}.rule=Host(`${COMMIT_REF_NAME}.dev.demo.com`)
+      - traefik.enable=true
+      - traefik.http.routers.dev-preview-${COMMIT_REF_NAME}.rule=PathPrefix(`/${COMMIT_REF_NAME}`)
+      # - traefik.http.routers.dev-preview-${COMMIT_REF_NAME}.rule=Host(`${COMMIT_REF_NAME}.dev.demo.com`) # 我还没域名，就不用 host，有域名可以用子域名，比路径好多了
       # - traefik.http.routers.dev-preview-${COMMIT_REF_NAME}.tls=true
       # - traefik.http.routers.dev-preview-${COMMIT_REF_NAME}.tls.certresolver=le
-
-networks:
-  external:
-    name: traefik_default

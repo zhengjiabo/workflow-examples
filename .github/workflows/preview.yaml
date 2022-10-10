@@ -28,6 +28,7 @@ jobs:
       - name: Preview
         run: |
           cat preview.docker-compose.yaml | envsubst > docker-compose.yaml
+          cat preview.nginx.conf | envsubst > nginx.conf
           docker compose up --build -d dev-preview-${COMMIT_REF_NAME}
         env:
           COMMIT_REF_NAME: ${{ github.head_ref }}
