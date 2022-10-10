@@ -21,7 +21,7 @@ jobs:
       # 获取 CICD 中的变量: Context
       # https://docs.github.com/en/actions/learn-github-actions/expressions
       name: preview/${{ github.head_ref }}
-      url: https://${ SERVICE_ADDRESS }/${{ github.head_ref }} # Gihub Action 要求 https
+      url: https://${SERVICE_ADDRESS}/${{ github.head_ref }} 
     env:
       SERVICE_ADDRESS: ${{ secrets.SERVICE_ADDRESS }}
     steps:
