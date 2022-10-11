@@ -5,6 +5,7 @@ on:
     types:
       # 当 feature 分支关闭时，
       - closed
+  workflow_dispatch:
 
 jobs:
   stop-preview:
@@ -20,7 +21,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: stop preview
         run: |
-          cat preview.docker-compose.yaml | envsubst ‘{COMMIT_REF_NAME}’ > docker-compose.yaml
+          cat preview.docker-compose.yaml | envsubst ‘${COMMIT_REF_NAME}’ > docker-compose.yaml
           docker compose stop
         env:
           COMMIT_REF_NAME: ${{ github.head_ref }}
