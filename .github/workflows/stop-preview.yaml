@@ -1,0 +1,31 @@
+name: Stop Preview
+
+on:
+  pull_request:
+    types:
+      # 当 feature 分支关闭/合并时，
+      - closed
+      - merged
+  workflow_dispatch:
+
+jobs:
+  stop-preview:
+    runs-on: self-hosted
+    steps:
+      # 方式一
+      # - name: stop preview
+      #   # 根据 Label 找到对应的容器，并停止服务，因为无需代码，所以用不到 checkout
+      #   run: docker ps -f label="com.docker.compose.service=dev-preview-${COMMIT_REF_NAME}" -q | xargs docker stop
+
+
+      # 方式二
+      - uses: actions/checkout@v3.1.0
+        with:
+          ssh-key: '${{ secrets.SSH_KEY }}'
+          ssh-known-hosts: 'github.com'
+      - name: stop preview
+        run: |
+          cat preview.docker-compose.yaml | envsubst '${COMMIT_REF_NAME}' > docker-compose.yaml
+          docker compose stop
+        env:
+          COMMIT_REF_NAME: ${{ github.head_ref }}
