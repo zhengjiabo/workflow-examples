@@ -3,8 +3,9 @@ name: Stop Preview
 on:
   pull_request:
     types:
-      # 当 feature 分支关闭时，
+      # 当 feature 分支关闭/合并时，
       - closed
+      - merged
   workflow_dispatch:
 
 jobs:
