@@ -20,9 +20,6 @@ jobs:
 
       # 方式二
       - uses: actions/checkout@v3.1.0
-        with:
-          ssh-key: '${{ secrets.SSH_KEY }}'
-          ssh-known-hosts: 'github.com'
       - name: stop preview
         run: |
           cat preview.docker-compose.yaml | envsubst '${COMMIT_REF_NAME}' > docker-compose.yaml
