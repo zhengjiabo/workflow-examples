@@ -18,7 +18,7 @@ jobs:
 
 
       # 方式二
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.1.0
       - name: stop preview
         run: |
           cat preview.docker-compose.yaml | envsubst '${COMMIT_REF_NAME}' > docker-compose.yaml
